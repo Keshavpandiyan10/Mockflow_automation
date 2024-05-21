@@ -52,7 +52,8 @@ public class CreatePage {
         Thread.sleep(3000);       
         driver.findElement(By.xpath("//input[@id='mfUnityCreateProjectTitle']")).sendKeys("Wireframe - For automation purpose");       
         driver.findElement(By.xpath("//button[@id='mfNewProjectModalBtn']")).click();        
-        Thread.sleep(5000);          		
+        Thread.sleep(5000); 
+        //drag and drop
     	WebElement From=driver.findElement(By.xpath("(//div[@class='mfCategoryItemsWrapper']/div)[1]"));	    
       	WebElement To=driver.findElement(By.xpath("//div[@class='ui-droppable']"));					
     	Actions act=new Actions(driver);					
