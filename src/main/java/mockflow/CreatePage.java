@@ -15,8 +15,6 @@ import org.openqa.selenium.interactions.Actions;
 public class CreatePage {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-		// TODO Auto-generated method stub
-		//System.setProperty("webdriver.chrome.driver", "/Users/keshavpandiyan/Downloads/chromedriver-mac-arm64/chromedriver");
 		WebDriver driver = new ChromeDriver();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		driver.get("https://mockflow.com/");
