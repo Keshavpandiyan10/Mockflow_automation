@@ -4,6 +4,7 @@ import static util.ConfigReader.getEmail;
 import static util.ConfigReader.getPassword;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,6 +12,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class CreatePage {
 
@@ -19,6 +23,7 @@ public class CreatePage {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		driver.get("https://mockflow.com/");
 		driver.manage().window().maximize();
+		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(5));
 		
 		//Scroll to bottom and back to top       		
         WebElement BottomElement = driver.findElement(By.xpath("//div[contains(@class, 'mf_type--mini mr-3 d-lg-inline mf_copyright_link')]"));	
@@ -28,6 +33,7 @@ public class CreatePage {
         WebElement TopElement = driver.findElement(By.xpath("//div[@id='MockflowNavBar']"));
         js.executeScript("arguments[0].scrollIntoView();", TopElement);
         System.out.println(driver.findElement(By.xpath("//div[@id='MockflowNavBar']")).getText());
+        Thread.sleep(3000);
 
 		//Login to account
 		driver.findElement(By.xpath("//button[@class='btn']")).click();
@@ -36,16 +42,18 @@ public class CreatePage {
 		driver.findElement(By.xpath("//input[@name='logpassword']")).sendKeys(getPassword());
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//input[@name='submit']")).click();
-		Thread.sleep(2000);
+		w.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.mfUpgradePromo")));
+		
+		
 		
 		//Create a DarkMode UI
 		driver.findElement(By.xpath("(//span[text()='Create New'])[1]")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//div[@data-id='webapp']")).click();
-		Thread.sleep(2000);
-		WebElement DarkUI = driver.findElement(By.xpath("//div[@data-id='webapp']"));   
+		Thread.sleep(3000);
+		WebElement DarkUI = driver.findElement(By.xpath("//div[@data-name='Darkmode UI']"));   
         js.executeScript("arguments[0].scrollIntoView();", DarkUI);
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         driver.findElement(By.xpath("//div[@data-name='Darkmode UI']")).click();
         Thread.sleep(3000);       
         driver.findElement(By.xpath("//input[@id='mfUnityCreateProjectTitle']")).sendKeys("Wireframe - For automation purpose");       
